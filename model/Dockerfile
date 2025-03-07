@@ -1,12 +1,17 @@
-FROM python:3.10
+# Use Python as base image
+FROM python:3.9
 
+# Set working directory
 WORKDIR /app
 
-# Copy everything from model/ to /app
+# Copy contents from model directory
 COPY . /app
 
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Expose port (if required)
 EXPOSE 5000
 
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "model_api:app"]
+# Start the application
+CMD ["python", "model_api.py"]

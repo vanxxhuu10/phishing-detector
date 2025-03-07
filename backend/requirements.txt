@@ -1,6 +1,11 @@
 Flask
-requests
+request
+jsonify
 joblib
+gunicorn
 pandas
-scikit-learn
-numpy
+TfidfVectorizer
+MultinomialNB
+make_pipeline
+train_test_split
+accuracy_score

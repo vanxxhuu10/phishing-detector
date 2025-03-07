@@ -1,7 +1,7 @@
 Flask
 requests  
 jsonify
-joblib
+joblib==1.2.0
 pandas
 scikit-learn
 gunicorn

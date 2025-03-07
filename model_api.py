@@ -3,9 +3,9 @@ import joblib
 import os  # Import os to get PORT from Railway
 
 app = Flask(__name__)
-
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "phishing_detector.pkl")
+model = joblib.load(MODEL_PATH)
 # Load the trained model
-model = joblib.load("phishing_detector.pkl")
 
 @app.route('/predict', methods=['POST'])
 def predict():

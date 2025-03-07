@@ -2,19 +2,19 @@
 FROM python:3.9
 
 # Set working directory
-WORKDIR /app
- 
-# Copy only requirements.txt first (for better caching)
-COPY requirements.txt /app/
+WORKDIR /model
 
-# Show contents of requirements.txt (debugging)
-RUN cat requirements.txt
+# Copy only requirements.txt before installing dependencies
+COPY model/requirements.txt /model/
 
-# Try installing dependencies with verbose logging
-RUN pip install --no-cache-dir -r requirements.txt --verbose
+# Show contents for debugging
+RUN ls -l /model/ && cat /model/requirements.txt
 
-# Copy remaining files
-COPY . /app
+# Install dependencies
+RUN pip install --no-cache-dir -r /model/requirements.txt
+
+# Copy everything else
+COPY . /model/
 
 # Expose port (if required)
 EXPOSE 5000

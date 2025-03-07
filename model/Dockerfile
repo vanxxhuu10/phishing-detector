@@ -4,10 +4,10 @@ FROM python:3.9
 # Set working directory
 WORKDIR /model
 
-# Copy only requirements.txt before installing dependencies
+# Copy `requirements.txt` from `model/`
 COPY model/requirements.txt /model/
 
-# Show contents for debugging
+# Debugging: List files
 RUN ls -l /model/ && cat /model/requirements.txt
 
 # Install dependencies

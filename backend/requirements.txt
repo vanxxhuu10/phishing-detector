@@ -1,0 +1,10 @@
+Flask
+request
+jsonify
+joblib
+pandas
+TfidfVectorizer
+MultinomialNB
+make_pipeline
+train_test_split
+accuracy_score

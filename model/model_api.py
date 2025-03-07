@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import joblib
+import os  # Import os to get PORT from Railway
 
 app = Flask(__name__)
 
@@ -9,7 +10,7 @@ model = joblib.load("phishing_detector.pkl")
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
-    email_text = data.get("emailText", "")  # Fix: Now matches the key from Node.js
+    email_text = data.get("emailText", "")  # Matches expected key
 
     if not email_text:
         return jsonify({"error": "No email content provided"}), 400
@@ -21,4 +22,5 @@ def predict():
     return jsonify({"prediction": result})
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Get Railway-assigned port
+    app.run(host="0.0.0.0", port=port)

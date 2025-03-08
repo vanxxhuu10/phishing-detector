@@ -7,11 +7,15 @@ async function analyzeEmail() {
     }
 
     try {
-        const response = await fetch("phishing-detector-backend.vercel.app/analyze-email", {
+        const response = await fetch("https://phishing-detector-backend.vercel.app/analyze-email", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: emailText })  // Make sure this matches backend key
+            body: JSON.stringify({ emailText: emailText })  // ✅ Use "emailText" (matches backend)
         });
+
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
+        }
 
         const data = await response.json();
         document.getElementById("result").innerText = `Prediction: ${data.prediction || "Error occurred"}`;

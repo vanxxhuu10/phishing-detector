@@ -7,7 +7,7 @@ async function analyzeEmail() {
     }
 
     try {
-        const response = await fetch("http://localhost:5000/analyze-email", {
+        const response = await fetch("https://phishing-detector-l8ce.onrender.com/predict", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: emailText })  // Make sure this matches backend key
